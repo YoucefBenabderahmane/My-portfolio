@@ -483,7 +483,7 @@ ol {
 }
 .about-area .about-me-box .img-box {
     width: 224px;
-    height: 224px;
+    height: 274px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(90deg, #3C58E3 -15%, #C2EBFF 58%, #5AB5E2 97%);
@@ -659,6 +659,7 @@ ol {
 .projects-area .project-item .project-img {
     border-radius: 30px;
     margin-bottom: 13px;
+    
 }
 .projects-area .project-item .project-img img {
     display: block;
@@ -692,13 +693,15 @@ ol {
 
 /* # Project Details */
 .project-details-wrap .project-details-img {
-    height: 550px;
+    height: 650px;
     position: relative;
     margin-bottom: 50px;
 }
 .project-details-wrap .project-details-img img {
-    width: 100%;
+    width: 80%;
     height: 100%;
+    margin-left: 150px;
+    border-radius: 30px;
     object-fit: cover;
     display: block;
 }
