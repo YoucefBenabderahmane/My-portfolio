@@ -143,30 +143,24 @@
                                     <button class="theme-btn submit-btn" type="submit">Send Message</button>
                                 </div>
                             </form>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.forms['contact'];
-    const successBox = document.querySelector('.messenger-box-contact__msg');
-    const errorBox = document.querySelector('.messenger-box-contact__error');
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    const form = document.forms['contact'];
+                                    const successBox = document.querySelector('.messenger-box-contact__msg');
+                                    const errorBox = document.querySelector('.messenger-box-contact__error');
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Stop the native submission
+                                    form.addEventListener("submit", function (event) {
+                                        // ❌ REMOVE event.preventDefault() so Netlify can process the form
+                                        successBox.style.display = 'block';
+                                        errorBox.style.display = 'none';
 
-        // Simulate a brief delay to show success (since Netlify handles submission behind the scenes)
-        setTimeout(() => {
-            // Fake success state
-            successBox.style.display = 'block';
-            errorBox.style.display = 'none';
-            form.reset();
+                                        setTimeout(() => {
+                                            successBox.style.display = 'none';
+                                        }, 5000);
+                                    });
+                                });
+                            </script>
 
-            // Optionally auto-hide success message
-            setTimeout(() => {
-                successBox.style.display = 'none';
-            }, 5000);
-        }, 1000);
-    });
-});
-</script>
 
                         </div>
                     </div>

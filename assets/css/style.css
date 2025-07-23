@@ -1475,6 +1475,17 @@ ol {
     }
 }
 
+.alert-danger {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
 
 
 /* # Footer */
