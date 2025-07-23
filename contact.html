@@ -114,28 +114,18 @@
                             <img src="./assets/images/icon3.png" alt="Icon">
                             <h1>Let’s work <span>together.</span></h1>
 
-                            <form method="POST" action="https://youcef.rf.gd/mailer.php">
-                                <div class="alert alert-success messenger-box-contact__msg" style="display: none;"
-                                    role="alert">
-                                    Your message was sent successfully.
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" name="full-name" id="full-name" placeholder="Name *">
-                                </div>
-                                <div class="input-group">
-                                    <input type="email" name="email" id="email" placeholder="Email *">
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" name="subject" id="subject" placeholder="Your Subject *">
-                                </div>
-                                <div class="input-group">
-                                    <textarea name="message" id="message" placeholder="Your Message *"></textarea>
-                                </div>
-                                <div class="input-group">
-                                    <button class="theme-btn submit-btn" name="submit" type="submit">Send
-                                        Message</button>
-                                </div>
+                            <form action="https://formsubmit.co/benabderahmane.youcef@gmail.com" method="POST">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="https://youcef.rf.gd/thanks.html">
+
+                                <input type="text" name="full-name" placeholder="Name *" required>
+                                <input type="email" name="email" placeholder="Email *" required>
+                                <input type="text" name="subject" placeholder="Subject *" required>
+                                <textarea name="message" placeholder="Your Message *" required></textarea>
+
+                                <button type="submit">Send Message</button>
                             </form>
+
 
                         </div>
                     </div>
@@ -177,40 +167,3 @@
 </body>
 
 </html>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector('.contact-form form');
-        const submitBtn = form.querySelector('.submit-btn');
-        const alertBox = form.querySelector('.messenger-box-contact__msg');
-
-        submitBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(form);
-
-            fetch('mailer.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.text())
-                .then(response => {
-                    if (response.trim() === "success") {
-                        alertBox.style.display = 'block';
-                        form.reset();
-
-                        // Auto-hide the alert after 5 seconds (optional)
-                        setTimeout(() => {
-                            alertBox.style.display = 'none';
-                        }, 5000);
-                    } else {
-                        alert("There was an error sending the message.");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("Something went wrong. Please try again.");
-                });
-        });
-    });
-</script>
