@@ -114,7 +114,8 @@
                             <img src="./assets/images/icon3.png" alt="Icon">
                             <h1>Let’s work <span>together.</span></h1>
 
-                            <form name="contact" method="POST" data-netlify="true" netlify action="/thank-you.html">
+                            <form name="contact" method="POST" data-netlify="true" action="?success=true">
+                                <input type="hidden" name="form-name" value="contact">
 
                                 <input type="hidden" name="form-name" value="contact">
 
@@ -144,6 +145,29 @@
                                     <button class="theme-btn submit-btn" type="submit">Send Message</button>
                                 </div>
                             </form>
+
+                            <div class="form-popup-success" id="successPopup">
+                                <div class="popup-content">
+                                    <h2>🎉 Thank You!</h2>
+                                    <p>Your message was sent successfully.</p>
+                                    <button onclick="closePopup()">Close</button>
+                                </div>
+                            </div>
+                            <script>
+                                function closePopup() {
+                                    document.getElementById('successPopup').style.display = 'none';
+                                    history.replaceState(null, '', window.location.pathname); // Remove ?success=true from URL
+                                }
+
+                                window.addEventListener('DOMContentLoaded', () => {
+                                    const params = new URLSearchParams(window.location.search);
+                                    if (params.get('success') === 'true') {
+                                        document.getElementById('successPopup').style.display = 'flex';
+                                    }
+                                });
+                            </script>
+
+
 
 
                         </div>
