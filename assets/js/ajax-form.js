@@ -1,71 +1,37 @@
 (function ($) {
-    'use strict';
-    var form = $('.contact-form form'),
-        message = $('.messenger-box-contact__msg'),
-        form_data;
+  'use strict';
 
-    // const submit = document.getElementById("submit-form");
-    // submit.addEventListener("click", validate);
-    // function validate(e) {
-    //     const message = document.getElementById('required-msg');
+  const form = $('.contact-form form');
+  const successBox = $('#successBox');
+  const errorBox = $('#errorBox');
 
-    //     const fullName = document.getElementById("full-name");
-    //     const email = document.getElementById("email");
-    //     const subject = document.getElementById("subject");
-    //     let valid = true;
+  form.on('submit', function (e) {
+    e.preventDefault();
 
-    //     if (!fullName.value || !email.value || !subject.value) {
-    //         message.classList.add('show');
-    //         fullName.classList.add("invalid");
-    //     } else {
-    //         message.classList.remove('show');
-    //     }
-        
-    //     return valid;
-    // }
+    const formData = form.serialize();
 
+    $.ajax({
+      url: '/', // <-- Submit to Netlify root
+      method: 'POST',
+      data: formData,
+      dataType: 'html',
+      success: function () {
+        successBox.fadeIn();
+        errorBox.hide();
+        form.trigger('reset');
 
-    // Success function
-    function done_func(response) {
-        message.fadeIn().removeClass('alert-danger').addClass('alert-success');
-        message.text(response);
-        setTimeout(function () {
-            message.fadeOut();
-        }, 3000);
-        form.find('input:not([type="submit"]), textarea').val('');
-    }
+        setTimeout(() => {
+          successBox.fadeOut();
+        }, 5000);
+      },
+      error: function () {
+        errorBox.fadeIn();
+        successBox.hide();
 
-    // fail function
-    function fail_func(data) {
-        message.fadeIn().removeClass('alert-success').addClass('alert-success');
-        message.text(data.responseText);
-        setTimeout(function () {
-            message.fadeOut();
-        }, 3000);
-    }
-    
-    form.submit(function (e) {
-        e.preventDefault();
-
-        
-
-        const fullName = document.getElementById("full-name");
-        const email = document.getElementById("email");
-
-        if (!fullName.value || !email.value) {
-            fullName.classList.add("invalid");
-            console.log('false');
-            return false
-        }
-
-        form_data = $(this).serialize();
-        $.ajax({
-            type: 'POST',
-            url: form.attr('action'),
-            data: form_data
-        })
-        .done(done_func)
-        .fail(fail_func);
+        setTimeout(() => {
+          errorBox.fadeOut();
+        }, 5000);
+      }
     });
-    
+  });
 })(jQuery);

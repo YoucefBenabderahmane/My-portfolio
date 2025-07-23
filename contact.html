@@ -114,19 +114,15 @@
                             <img src="./assets/images/icon3.png" alt="Icon">
                             <h1>Let’s work <span>together.</span></h1>
 
-                            <form name="contact" method="POST" data-netlify="true" action="?success=true">
-                                <input type="hidden" name="form-name" value="contact">
 
-                                <input type="hidden" name="form-name" value="contact">
+                            <form name="contact" id="contact-form" method="POST" data-netlify="true" netlify>
+                                <input type="hidden" name="form-name" value="contact" />
 
-                                <div class="alert alert-success messenger-box-contact__msg" style="display: none"
-                                    role="alert">
+                                <div id="successBox" class="alert alert-success" style="display:none;">
                                     ✅ Your message was sent successfully.
                                 </div>
-
-                                <div class="alert alert-danger messenger-box-contact__error" style="display: none"
-                                    role="alert">
-                                    ❌ There was an error sending your message. Please try again.
+                                <div id="errorBox" class="alert alert-danger" style="display:none;">
+                                    ❌ Oops! There was an error sending your message.
                                 </div>
 
                                 <div class="input-group">
@@ -153,21 +149,6 @@
                                     <button onclick="closePopup()">Close</button>
                                 </div>
                             </div>
-                            <script>
-                                function closePopup() {
-                                    document.getElementById('successPopup').style.display = 'none';
-                                    history.replaceState(null, '', window.location.pathname); // Remove ?success=true from URL
-                                }
-
-                                window.addEventListener('DOMContentLoaded', () => {
-                                    const params = new URLSearchParams(window.location.search);
-                                    if (params.get('success') === 'true') {
-                                        document.getElementById('successPopup').style.display = 'flex';
-                                    }
-                                });
-                            </script>
-
-
 
 
                         </div>
@@ -207,6 +188,7 @@
     <script src="./assets/js/aos.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ajax-form.js"></script>
+
 </body>
 
 </html>
